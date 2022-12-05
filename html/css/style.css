@@ -1,0 +1,582 @@
+body {
+  background-color: #c0dfff;
+  font-family: Avenir Next, sans-serif;
+  font-size: medium;
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* .b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+} */
+
+.b-example-vr {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 100vh;
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+#navbarCollapse {
+  text-align: right;
+  background-color: rgba(256, 256, 256, 0);
+  margin-right: 3px;
+}
+.header-top {
+  background: url(../images/header-top.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: bottom;
+  background-color: #c0dfff;
+  height: 650px;
+}
+
+.navbar-toggler {
+  background-color: #94c7fb;
+}
+
+#myCarousel {
+  background-color: #dfeefe;
+}
+
+#tsb {
+  margin-top: -100px;
+  height: 36px;
+}
+
+.carousel-item {
+  /* height: 30rem; */
+  height: 700px;
+  background: url(../images/tsb-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: top;
+}
+
+#tsb2 {
+  background: url(../images/tsb-2-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.carousel-caption {
+  /* bottom: 3rem; */
+  top: 10rem;
+  z-index: 10;
+  color: #000;
+  font-size: 1.65rem;
+  font-family: Avenir Next, sans-serif;
+  /* font-weight: lighter; */
+  /* font-weight: 150; */
+  /* padding-left: 20px;
+  padding-right: 20px; */
+}
+
+.about1 {
+  background: url(../images/about-1-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: bottom;
+  background-color: #c0dfff;
+  height: 700px;
+  font-size: 1.65rem;
+}
+
+.about2 {
+  background: url(../images/about-2-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: bottom;
+  background-color: #c0dfff;
+  height: 700px;
+  font-size: 1.65rem;
+}
+.roadmap1 {
+  background: url(../images/roadmap-1-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: bottom;
+  background-color: #c0dfff;
+  height: 700px;
+  font-size: 1.2rem;
+}
+
+.roadmap2 {
+  background: url(../images/roadmap-2-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: bottom left;
+  background-color: #c0dfff;
+  height: 700px;
+  font-size: 1.2rem;
+}
+
+.roadmap3 {
+  background: url(../images/roadmap-3-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: bottom;
+  background-color: #c0dfff;
+  height: 700px;
+  font-size: 1.2rem;
+}
+.membername {
+  margin-top: 5px;
+  font-weight: 600;
+}
+.marketing p{
+  font-size: 0.8rem;
+}
+
+.carousel-control-prev-icon {
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%235bafb2' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1-1-3-3 3-3-1-1z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%235bafb2' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1 1 3 3-3 3 1 1 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+@media screen and (min-width: 1900px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 920px;
+  }
+  .nav-link > img {
+    height: 50px;
+  }
+  .carousel-caption {
+    top: 12rem;
+    font-size: 1.6rem;
+  }
+  #logo {
+    margin-top: 150px;
+  }
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 1900px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 920px;
+  }
+  .nav-link > img {
+    height: 50px;
+  }
+    .carousel-caption {
+    top: 12rem;
+    font-size: 1.6rem;
+  }
+  
+  #logo {
+    margin-top: 150px;
+  }
+  
+     .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 750px;
+  }
+
+  .nav-link > img {
+    height: 42px;
+  }
+    .carousel-caption {
+    top: 10.5rem;
+    font-size: 1.6rem;
+  }
+  
+  #logo {
+    margin-top: 150px;
+  }
+    .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 700px;
+  }
+
+  .nav-link > img {
+    height: 42px;
+  }
+    .carousel-caption {
+    top: 9.5rem;
+    font-size: 1.6rem;
+  }
+  
+  #logo {
+    margin-top: 150px;
+  }
+    .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 1.7rem;
+    line-height: 2rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 1.8rem;
+  }
+  
+}
+
+@media screen and (max-width: 1024px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 650px;
+  }
+    .carousel-caption {
+    top: 9rem;
+    font-size: 1.6rem;
+  }
+  #logo {
+    margin-top: 150px;
+  }
+  
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 1.5rem;
+    line-height: 1.9rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 540px;
+  }
+  #logo {
+    margin-top: 100px;
+    width: 40%;
+  }
+
+  .carousel-caption {
+    top: 8rem;
+    font-size: 1.6rem;
+  }
+  .about1,
+  .about2 {
+    font-size: 1.6rem;
+  }
+  
+    .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 768px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 500px;
+  }
+  #logo {
+    margin-top: 100px;
+    width: 40%;
+  }
+  .carousel-caption {
+    top: 7rem;
+    font-size: 1.4rem;
+  }
+  .about1,
+  .about2 {
+    font-size: 1.4rem;
+  }
+  
+    .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 1.3rem;
+  }
+  
+}
+@media screen and (max-width: 640px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 480px;
+  }
+  .carousel-caption {
+    top: 6.5rem;
+    font-size: 1.35rem;
+  }
+  .about1,
+  .about2 {
+    font-size: 1.4rem;
+  }
+
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 576px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 400px;
+  }
+  .carousel-caption {
+    top: 4.5rem;
+    font-size: 1.15rem;
+  }
+  .about1,
+  .about2 {
+    font-size: 1.2rem;
+  }
+
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 360px;
+  }
+  .carousel-caption {
+    top: 4rem;
+    font-size: 1rem;
+  }
+  .about1,
+  .about2 {
+    font-size: 1rem;
+  }
+
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 414px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 300px;
+  }
+  .carousel-caption {
+    top: 3.5rem;
+    font-size: 0.8rem;
+  }
+  .about1,
+  .about2 {
+    font-size: 0.8rem;
+  }
+
+  .roadmap1,
+  .roadmap2,
+  .roadmap3{
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 0.8rem;
+  }
+}
+
+
+@media (max-width: 320px) {
+  .header-top,
+  .carousel-item,
+  .about1,
+  .about2,
+  #tsb2,
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    height: 280px;
+  }
+  .roadmap1,
+  .roadmap2,
+  .roadmap3 {
+    font-size: 0.3rem;
+    line-height: 0.8rem;
+  }
+  .roadmap1 h3,
+  .roadmap2 h3,
+  .roadmap3 h3 {
+    font-size: 0.8rem;
+  }
+  .carousel-caption {
+    top: 3rem;
+    font-size: 0.7rem;
+  }
+  .about1,
+  .about2 {
+    font-size: 0.75rem;
+  }
+}
