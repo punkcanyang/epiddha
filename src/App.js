@@ -10,13 +10,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import queryString from "query-string"
 
-const isBrowser = typeof window !== "undefined"
-let parsed = "";
-if (isBrowser) {
-  parsed = queryString.parse(window.location.search)
-}
 let _currentPrice = 0;
 let _isActiveOn = "none";
 let _isActiveOff = "none";
