@@ -200,13 +200,16 @@ console.log(this.state.MintAmount);
       contractJson.abi,
       _ContractAddress
     );
+    const web3_windows = new Web3(window.ethereum);
 
     if (window.web3) {
-      const web3_windows = new Web3(window.ethereum);
       const networkId_window = await web3_windows.eth.net.getId();
       const accounts = await web3_windows.eth.getAccounts();
       if (typeof accounts[0] === "undefined") {
         this.setState({ NetWorkState: "connecting Wallet" });
+        _isActiveOn = "none";
+        _isActiveOff = "none";
+        _mintReadOnly = false;
       }
       else if (networkId_window !== _networkid) {
         this.setState({ NetWorkState: "switch to mainnet" });
@@ -242,7 +245,13 @@ console.log(this.state.MintAmount);
       _isActiveOff = "none";
       _mintReadOnly = false;
     }
+    const accounts = await web3_windows.eth.getAccounts();
 
+    if (typeof accounts[0] === "undefined") {
+      _isActiveOn = "none";
+      _isActiveOff = "none";
+      _mintReadOnly = true;
+    }
 
     const _totalSupply = await contract.methods.totalSupply().call();
     const _maxSupply = await contract.methods.MAX_SUPPLY().call();
@@ -348,25 +357,3 @@ console.log(this.state.MintAmount);
 
 }
 export default App;
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
