@@ -292,7 +292,7 @@ console.log(this.state.MintAmount);
                 <div className="section">
                   <div className="content_Text">
                     <div className="mintform">
-                      <h3>Epiddha</h3>
+                      <h3>Mint Epiddha NFT</h3>
                       <div style={{
                         display: _isActiveOn
                       }}>
