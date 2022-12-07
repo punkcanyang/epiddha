@@ -116,7 +116,7 @@ class App extends Component {
       _ContractAddress
     );
     const accounts = await web3.eth.getAccounts();
-    console.log(this.state.MintAmount);
+
     if (this.state.isAllow > 0 && this.state.isAllow >= this.state.MintAmount) {
       await contract.methods.mint(this.state.MintAmount).send({
         value: 0,
@@ -270,7 +270,12 @@ class App extends Component {
     const _maxMintAmount = await contract.methods.MAX_MULTIMINT().call();
     this.setState({ totalSupply: _totalSupply });
     this.setState({ maxSupply: _maxSupply });
-    _GetmaxMintAmount = _maxMintAmount
+    if (_isAllow > 0) {
+      _GetmaxMintAmount = _isAllow;
+    } else {
+      _GetmaxMintAmount = _maxMintAmount;
+
+    }
 
   };
 
