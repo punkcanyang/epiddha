@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./css/bootstrap.min.css"
 
 import './App.css';
+import './css/style.css';
 import contractJson from "./Epiddha.json";
 import Web3 from "web3";
 import {
@@ -302,10 +303,9 @@ class App extends Component {
         }}
       >
 
-
-        <Container>
-          <Row xs={1} md={1}>
-            <Col>
+<div className="header-top position-relative d-flex align-items-center">
+      
+             
               <div className="section">
                 <div className="content_Text">
                   <div className="mintform">
@@ -366,11 +366,11 @@ class App extends Component {
 
 
                 </div>
-              </div></Col>
-          </Row>
-        </Container>
+              </div>
 
       </div>
+      </div>
+
     );
   }
 

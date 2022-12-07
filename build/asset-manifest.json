@@ -1,15 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.bf6d4cff.css",
-    "main.js": "/static/js/main.42e8aee9.js",
+    "main.css": "/static/css/main.0394111c.css",
+    "main.js": "/static/js/main.32214317.js",
     "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
+    "static/media/header-top.png": "/static/media/header-top.a0fc820ac472b997e97e.png",
+    "static/media/roadmap-1-bg.png": "/static/media/roadmap-1-bg.4882cc1975c0bbccb683.png",
+    "static/media/roadmap-2-bg.png": "/static/media/roadmap-2-bg.5245a1d3653286129783.png",
+    "static/media/tsb-2-bg.png": "/static/media/tsb-2-bg.af2564e342728f8ca359.png",
+    "static/media/about-1-bg.png": "/static/media/about-1-bg.b4e5a6c25fd0c9a5c0ba.png",
+    "static/media/about-2-bg.png": "/static/media/about-2-bg.1e9393991661fa552323.png",
+    "static/media/tsb-bg.png": "/static/media/tsb-bg.e4841aad510164154887.png",
+    "static/media/roadmap-3-bg.png": "/static/media/roadmap-3-bg.b85e03960a257d1da837.png",
     "index.html": "/index.html",
-    "main.bf6d4cff.css.map": "/static/css/main.bf6d4cff.css.map",
-    "main.42e8aee9.js.map": "/static/js/main.42e8aee9.js.map",
+    "main.0394111c.css.map": "/static/css/main.0394111c.css.map",
+    "main.32214317.js.map": "/static/js/main.32214317.js.map",
     "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bf6d4cff.css",
-    "static/js/main.42e8aee9.js"
+    "static/css/main.0394111c.css",
+    "static/js/main.32214317.js"
   ]
 }
