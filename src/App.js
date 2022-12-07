@@ -116,16 +116,15 @@ class App extends Component {
       _ContractAddress
     );
     const accounts = await web3.eth.getAccounts();
-console.log(this.state.MintAmount);
-    if(this.state.isAllow>0 && this.state.isAllow>=this.state.MintAmount){
+    console.log(this.state.MintAmount);
+    if (this.state.isAllow > 0 && this.state.isAllow >= this.state.MintAmount) {
       await contract.methods.mint(this.state.MintAmount).send({
         value: 0,
         from: accounts[0],
         _mintAmount: this.state.MintAmount,
       });
       this.setState({ MintAmount: 0 });
-    } else if (this.state.MintAmount * _currentPrice > 0)
-    {
+    } else if (this.state.MintAmount * _currentPrice > 0) {
       await contract.methods.mint(this.state.MintAmount).send({
         value: this.state.MintAmount * _currentPrice,
         from: accounts[0],
@@ -138,7 +137,7 @@ console.log(this.state.MintAmount);
     const _totalSupply = await contract.methods.totalSupply().call();
     this.setState({ totalSupply: _totalSupply });
     this.setState({ isAllow: _isAllow });
-  
+
     console.log(this.state.isAllow);
   };
 
@@ -211,14 +210,11 @@ console.log(this.state.MintAmount);
         _isActiveOn = "none";
         _isActiveOff = "none";
         _noWallet = "";
-        _mintReadOnly = false;
+        _mintReadOnly = true;
       }
       else if (networkId_window !== _networkid) {
         this.setState({ NetWorkState: "switch to mainnet" });
-        _isActiveOn = "none";
-        _isActiveOff = "none";
-        _noWallet = "";
-        _mintReadOnly = false;
+
       }
       else {
         this.setState({ NetWorkState: "Mint" });
@@ -230,12 +226,12 @@ console.log(this.state.MintAmount);
       _isActiveOn = "none";
       _isActiveOff = "none";
       _noWallet = "none";
-      _mintReadOnly = false;
+      _mintReadOnly = true;
     }
 
     const _publicSale = await contract.methods.publicSale().call();
 
-    _isAllow=this.state.isAllow;
+    _isAllow = this.state.isAllow;
 
 
     if (_isAllow > 0) {
@@ -258,6 +254,12 @@ console.log(this.state.MintAmount);
     const accounts = await web3_windows.eth.getAccounts();
 
     if (typeof accounts[0] === "undefined") {
+      _isActiveOn = "none";
+      _isActiveOff = "none";
+      _mintReadOnly = true;
+    }
+
+    if (this.state.NetWorkState == "switch to mainnet") {
       _isActiveOn = "none";
       _isActiveOff = "none";
       _mintReadOnly = true;
@@ -296,74 +298,74 @@ console.log(this.state.MintAmount);
       >
 
 
-          <Container>
-            <Row xs={1} md={1}>
-              <Col>
-                <div className="section">
-                  <div className="content_Text">
-                    <div className="mintform">
-                      <h3>Mint Epiddha NFT</h3>
-                      <div style={{
-                        display: _isActiveOn
-                      }}>
-                        <strong>Price：</strong>{_currentPrice / 1e18} {" Eth"}<br />
+        <Container>
+          <Row xs={1} md={1}>
+            <Col>
+              <div className="section">
+                <div className="content_Text">
+                  <div className="mintform">
+                    <h3>Mint Epiddha NFT</h3>
+                    <div style={{
+                      display: _isActiveOn
+                    }}>
+                      <strong>Price：</strong>{_currentPrice / 1e18} {" Eth"}<br />
 
-                      </div>
-                      <div style={{
-                        display: _isActiveOff
-                      }}>
-                        <span style={{ color: "#00b4ff" }}>Waiting for open sale</span><br />
+                    </div>
+                    <div style={{
+                      display: _isActiveOff
+                    }}>
+                      <span style={{ color: "#00b4ff" }}>Waiting for open sale</span><br />
 
-                      </div>
-                      <div style={{
-                        display: _noWallet
-                      }}>
-                      
+                    </div>
+                    <div style={{
+                      display: _noWallet
+                    }}>
+
                       <strong>Count: </strong>
                       {this.state.totalSupply} / {this.state.maxSupply}
-                      </div>
                     </div>
-
-                    <div>
-                    </div>
-                    <div>
-                      <div>
-                      </div>
-                    </div>
-                    <br></br>
-                    <label>
-                      <input
-                        type="textarea"
-                        id="MintAmount"
-                        maxLength={3}
-                        max={20}
-                        style={{ width: "100px" }}
-                        pattern="[+-]?\d+(?:[.,]\d+)?"
-                        onChange={this.handleMintAmountChange}
-                        value={this.state.MintAmount}
-                        placeholder="Enter amount"
-                        className="form-control"
-                        readOnly={_mintReadOnly}
-                      />
-                    </label>
-
-                    <Button
-                      type="button"
-                      onClick={this.buttonstate}
-                      //variant="warning"
-                      className="button is-rounded"
-                      id="mintbutton"
-                    >
-                      {this.state.NetWorkState}
-                    </Button>
-
-
                   </div>
-                </div></Col>
-            </Row>
-          </Container>
 
-        </div>
+                  <div>
+                  </div>
+                  <div>
+                    <div>
+                    </div>
+                  </div>
+                  <br></br>
+                  <label>
+                    <input
+                      type="textarea"
+                      id="MintAmount"
+                      maxLength={3}
+                      max={20}
+                      style={{ width: "100px" }}
+                      pattern="[+-]?\d+(?:[.,]\d+)?"
+                      onChange={this.handleMintAmountChange}
+                      value={this.state.MintAmount}
+                      placeholder="Enter amount"
+                      className="form-control"
+                      readOnly={_mintReadOnly}
+                    />
+                  </label>
+
+                  <Button
+                    type="button"
+                    onClick={this.buttonstate}
+                    //variant="warning"
+                    className="button is-rounded"
+                    id="mintbutton"
+                  >
+                    {this.state.NetWorkState}
+                  </Button>
+
+
+                </div>
+              </div></Col>
+          </Row>
+        </Container>
+
+      </div>
     );
   }
 
