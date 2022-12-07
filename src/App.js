@@ -270,7 +270,7 @@ class App extends Component {
     const _maxMintAmount = await contract.methods.MAX_MULTIMINT().call();
     this.setState({ totalSupply: _totalSupply });
     this.setState({ maxSupply: _maxSupply });
-    if (_isAllow > 0) {
+    if (_isAllow > _maxMintAmount) {
       _GetmaxMintAmount = _isAllow;
     } else {
       _GetmaxMintAmount = _maxMintAmount;
