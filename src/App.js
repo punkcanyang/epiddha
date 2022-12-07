@@ -188,14 +188,16 @@ class App extends Component {
     }
 
 
-    //如果錢包有連線，使用錢包連線，沒有就使用系統連線
+    let _RPC = "https://mainnet.infura.io/v3/9fe4b651dd214a29a158db8192e0332b";
+    if (_now % 3 > 0) {
+      _RPC = "https://eth-mainnet.g.alchemy.com/v2/DxEpRBm9E6sDMh7ZGBn2zfhqn3U9DjkH";
+    }
 
     const provider = new Web3.providers.HttpProvider(
-      "https://mainnet.infura.io/v3/9fe4b651dd214a29a158db8192e0332b"
+      _RPC
     );
     let web3 = new Web3(provider);
     let _isAllow = 0;
-
 
     const contract = new web3.eth.Contract(
       contractJson.abi,
@@ -303,72 +305,72 @@ class App extends Component {
         }}
       >
 
-<div className="header-top position-relative d-flex align-items-center">
-      
-             
-              <div className="section">
-                <div className="content_Text">
-                  <div className="mintform">
-                    <h3>Mint Epiddha NFT</h3>
-                    <div style={{
-                      display: _isActiveOn
-                    }}>
-                      <strong>Price：</strong>{_currentPrice / 1e18} {" Eth"}<br />
-
-                    </div>
-                    <div style={{
-                      display: _isActiveOff
-                    }}>
-                      <span style={{ color: "#00b4ff" }}>Waiting for open sale</span><br />
-
-                    </div>
-                    <div style={{
-                      display: _noWallet
-                    }}>
-
-                      <strong>Count: </strong>
-                      {this.state.totalSupply} / {this.state.maxSupply}
-                    </div>
-                  </div>
-
-                  <div>
-                  </div>
-                  <div>
-                    <div>
-                    </div>
-                  </div>
-                  <br></br>
-                  <label>
-                    <input
-                      type="textarea"
-                      id="MintAmount"
-                      maxLength={3}
-                      max={20}
-                      style={{ width: "100px" }}
-                      pattern="[+-]?\d+(?:[.,]\d+)?"
-                      onChange={this.handleMintAmountChange}
-                      value={this.state.MintAmount}
-                      placeholder="Enter amount"
-                      className="form-control"
-                      readOnly={_mintReadOnly}
-                    />
-                  </label>
-
-                  <Button
-                    type="button"
-                    onClick={this.buttonstate}
-                    //variant="warning"
-                    className="button is-rounded"
-                    id="mintbutton"
-                  >
-                    {this.state.NetWorkState}
-                  </Button>
+        <div className="header-top position-relative d-flex align-items-center">
 
 
+          <div className="section">
+            <div className="content_Text">
+              <div className="mintform">
+                <h3>Mint Epiddha NFT</h3>
+                <div style={{
+                  display: _isActiveOn
+                }}>
+                  <strong>Price：</strong>{_currentPrice / 1e18} {" Eth"}<br />
+
+                </div>
+                <div style={{
+                  display: _isActiveOff
+                }}>
+                  <span style={{ color: "#00b4ff" }}>Waiting for open sale</span><br />
+
+                </div>
+                <div style={{
+                  display: _noWallet
+                }}>
+
+                  <strong>Count: </strong>
+                  {this.state.totalSupply} / {this.state.maxSupply}
                 </div>
               </div>
 
-      </div>
+              <div>
+              </div>
+              <div>
+                <div>
+                </div>
+              </div>
+              <br></br>
+              <label>
+                <input
+                  type="textarea"
+                  id="MintAmount"
+                  maxLength={3}
+                  max={20}
+                  style={{ width: "100px" }}
+                  pattern="[+-]?\d+(?:[.,]\d+)?"
+                  onChange={this.handleMintAmountChange}
+                  value={this.state.MintAmount}
+                  placeholder="Enter amount"
+                  className="form-control"
+                  readOnly={_mintReadOnly}
+                />
+              </label>
+
+              <Button
+                type="button"
+                onClick={this.buttonstate}
+                //variant="warning"
+                className="button is-rounded"
+                id="mintbutton"
+              >
+                {this.state.NetWorkState}
+              </Button>
+
+
+            </div>
+          </div>
+
+        </div>
       </div>
 
     );
