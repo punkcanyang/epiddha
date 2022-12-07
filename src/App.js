@@ -14,6 +14,7 @@ import {
 let _currentPrice = 0;
 let _isActiveOn = "none";
 let _isActiveOff = "none";
+let _noWallet = "";
 let _mintReadOnly = true;
 let _GetmaxMintAmount = 0
 let _ContractAddress = "0x065246CC438388645E4dF5e65A94C27ceE2aa7c5"
@@ -209,10 +210,15 @@ console.log(this.state.MintAmount);
         this.setState({ NetWorkState: "connecting Wallet" });
         _isActiveOn = "none";
         _isActiveOff = "none";
+        _noWallet = "";
         _mintReadOnly = false;
       }
       else if (networkId_window !== _networkid) {
         this.setState({ NetWorkState: "switch to mainnet" });
+        _isActiveOn = "none";
+        _isActiveOff = "none";
+        _noWallet = "";
+        _mintReadOnly = false;
       }
       else {
         this.setState({ NetWorkState: "Mint" });
@@ -221,6 +227,10 @@ console.log(this.state.MintAmount);
       }
     } else {
       this.setState({ NetWorkState: "Please install wallet" });
+      _isActiveOn = "none";
+      _isActiveOff = "none";
+      _noWallet = "none";
+      _mintReadOnly = false;
     }
 
     const _publicSale = await contract.methods.publicSale().call();
@@ -305,9 +315,13 @@ console.log(this.state.MintAmount);
                         <span style={{ color: "#00b4ff" }}>Waiting for open sale</span><br />
 
                       </div>
-
+                      <div style={{
+                        display: _noWallet
+                      }}>
+                      
                       <strong>Count: </strong>
                       {this.state.totalSupply} / {this.state.maxSupply}
+                      </div>
                     </div>
 
                     <div>
