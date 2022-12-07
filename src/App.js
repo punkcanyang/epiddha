@@ -252,6 +252,8 @@ class App extends Component {
       _isActiveOff = "";
       _mintReadOnly = true;
       _disableMintDiv = "none"
+      this.setState({ NetWorkState: "Coming soon" });
+
 
     } else {
       _isActiveOn = "";
@@ -266,13 +268,15 @@ class App extends Component {
       _isActiveOn = "none";
       _isActiveOff = "none";
       _mintReadOnly = true;
+      _disableMintDiv = "none"
+
     }
 
     if (this.state.NetWorkState == "switch to mainnet") {
       _isActiveOn = "none";
       _isActiveOff = "none";
       _mintReadOnly = true;
-      _disableMintDiv = ""
+      _disableMintDiv = "none"
 
     }
 
@@ -351,14 +355,14 @@ class App extends Component {
               </div>
               <br></br>
 
-              <div style={{ display: _disableMintDiv }}>
+              <div >
                 <label>
                   <input
                     type="textarea"
                     id="MintAmount"
                     maxLength={3}
                     max={20}
-                    style={{ width: "100px" }}
+                    style={{ width: "100px",display: _disableMintDiv }}
                     pattern="[+-]?\d+(?:[.,]\d+)?"
                     onChange={this.handleMintAmountChange}
                     value={this.state.MintAmount}
