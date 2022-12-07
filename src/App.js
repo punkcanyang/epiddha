@@ -16,6 +16,7 @@ let _currentPrice = 0;
 let _isActiveOn = "none";
 let _isActiveOff = "none";
 let _noWallet = "";
+let _disableMintDiv = "none";
 let _mintReadOnly = true;
 let _GetmaxMintAmount = 0
 let _ContractAddress = "0x065246CC438388645E4dF5e65A94C27ceE2aa7c5"
@@ -188,7 +189,8 @@ class App extends Component {
     }
 
 
-    let _RPC = "https://mainnet.infura.io/v3/9fe4b651dd214a29a158db8192e0332b";
+    //let _RPC = "https://mainnet.infura.io/v3/9fe4b651dd214a29a158db8192e0332b";
+    let _RPC = "https://eth-mainnet.g.alchemy.com/v2/DxEpRBm9E6sDMh7ZGBn2zfhqn3U9DjkH";
     if (_now % 3 > 0) {
       _RPC = "https://eth-mainnet.g.alchemy.com/v2/DxEpRBm9E6sDMh7ZGBn2zfhqn3U9DjkH";
     }
@@ -249,10 +251,14 @@ class App extends Component {
       _isActiveOn = "none";
       _isActiveOff = "";
       _mintReadOnly = true;
+      _disableMintDiv = "none"
+
     } else {
       _isActiveOn = "";
       _isActiveOff = "none";
       _mintReadOnly = false;
+      _disableMintDiv = ""
+
     }
     const accounts = await web3_windows.eth.getAccounts();
 
@@ -266,6 +272,8 @@ class App extends Component {
       _isActiveOn = "none";
       _isActiveOff = "none";
       _mintReadOnly = true;
+      _disableMintDiv = ""
+
     }
 
     const _totalSupply = await contract.methods.totalSupply().call();
@@ -318,18 +326,20 @@ class App extends Component {
                   <strong>Price：</strong>{_currentPrice / 1e18} {" Eth"}<br />
 
                 </div>
-                <div style={{
-                  display: _isActiveOff
-                }}>
-                  <span style={{ color: "#00b4ff" }}>Waiting for open sale</span><br />
 
-                </div>
                 <div style={{
                   display: _noWallet
                 }}>
 
                   <strong>Count: </strong>
                   {this.state.totalSupply} / {this.state.maxSupply}
+                </div>
+
+                <div style={{
+                  display: _isActiveOff
+                }}>
+                  <span style={{ color: "#00aaFF",fontWeight:"800" }}>Waiting for open sale</span><br />
+
                 </div>
               </div>
 
@@ -340,33 +350,34 @@ class App extends Component {
                 </div>
               </div>
               <br></br>
-              <label>
-                <input
-                  type="textarea"
-                  id="MintAmount"
-                  maxLength={3}
-                  max={20}
-                  style={{ width: "100px" }}
-                  pattern="[+-]?\d+(?:[.,]\d+)?"
-                  onChange={this.handleMintAmountChange}
-                  value={this.state.MintAmount}
-                  placeholder="Enter amount"
-                  className="form-control"
-                  readOnly={_mintReadOnly}
-                />
-              </label>
 
-              <Button
-                type="button"
-                onClick={this.buttonstate}
-                //variant="warning"
-                className="button is-rounded"
-                id="mintbutton"
-              >
-                {this.state.NetWorkState}
-              </Button>
+              <div style={{ display: _disableMintDiv }}>
+                <label>
+                  <input
+                    type="textarea"
+                    id="MintAmount"
+                    maxLength={3}
+                    max={20}
+                    style={{ width: "100px" }}
+                    pattern="[+-]?\d+(?:[.,]\d+)?"
+                    onChange={this.handleMintAmountChange}
+                    value={this.state.MintAmount}
+                    placeholder="Enter amount"
+                    className="form-control"
+                    readOnly={_mintReadOnly}
+                  />
+                </label>
 
-
+                <Button
+                  type="button"
+                  onClick={this.buttonstate}
+                  //variant="warning"
+                  className="button is-rounded"
+                  id="mintbutton"
+                >
+                  {this.state.NetWorkState}
+                </Button>
+              </div>
             </div>
           </div>
 
