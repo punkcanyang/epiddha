@@ -16,24 +16,24 @@ let _isActiveOn = "none";
 let _isActiveOff = "none";
 let _mintReadOnly = true;
 let _GetmaxMintAmount = 0
-let _ContractAddress = "0x9C230638F2c78753d27E8c89c658C502f23948A9"
+let _ContractAddress = "0x065246CC438388645E4dF5e65A94C27ceE2aa7c5"
 
 const dateTime = Date.now();
 const _now = Math.floor(dateTime / 1000);
 
 const rx_live = /^[+-]?\d*(?:\d*)?$/;
-const _networkid = 5;
+const _networkid = 1;
 const Switch_networks = {
-  Goerli: {
-    chainId: `0x${Number(5).toString(16)}`,
-    chainName: "goerli",
+  Mainnet: {
+    chainId: `0x${Number(1).toString(16)}`,
+    chainName: "mainnet",
     nativeCurrency: {
       name: "ETH",
       symbol: "ETH",
       decimals: 18
     },
-    rpcUrls: ["https://goerli.infura.io/v3/"],
-    blockExplorerUrls: ["https://goerli.etherscan.io"]
+    rpcUrls: ["https://mainnet.infura.io/v3/"],
+    blockExplorerUrls: ["https://etherscan.io"]
   }
 
 };
@@ -88,7 +88,7 @@ class App extends Component {
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
       if (networkId !== _networkid) {
-        this.handleNetworkSwitch("goerli")
+        this.handleNetworkSwitch("mainnet")
       }
 
       const instance = new web3.eth.Contract(
@@ -157,7 +157,7 @@ console.log(this.state.MintAmount);
 
       }
       else if (networkId_window !== _networkid) {
-        this.handleNetworkSwitch("goerli")
+        this.handleNetworkSwitch("mainnet")
       }
       else {
         if (this.state.MintAmount === "0") {
@@ -190,7 +190,7 @@ console.log(this.state.MintAmount);
     //如果錢包有連線，使用錢包連線，沒有就使用系統連線
 
     const provider = new Web3.providers.HttpProvider(
-      "https://goerli.infura.io/v3/9fe4b651dd214a29a158db8192e0332b"
+      "https://mainnet.infura.io/v3/9fe4b651dd214a29a158db8192e0332b"
     );
     let web3 = new Web3(provider);
     let _isAllow = 0;
