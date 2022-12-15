@@ -1,16 +1,11 @@
 import React, { Component } from "react";
-import "./css/bootstrap.min.css"
+import "./css/bootstrap.min.css";
 
-import './App.css';
-import './css/style.css';
+import "./App.css";
+import "./css/style.css";
 import contractJson from "./Epiddha.json";
 import Web3 from "web3";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 let _currentPrice = 0;
 let _isActiveOn = "none";
@@ -18,8 +13,9 @@ let _isActiveOff = "none";
 let _noWallet = "";
 let _disableMintDiv = "none";
 let _mintReadOnly = true;
-let _GetmaxMintAmount = 0
-let _ContractAddress = "0x065246CC438388645E4dF5e65A94C27ceE2aa7c5"
+let _GetmaxMintAmount = 0;
+let _ContractAddress = "0x065246CC438388645E4dF5e65A94C27ceE2aa7c5";
+
 
 const dateTime = Date.now();
 const _now = Math.floor(dateTime / 1000);
@@ -33,12 +29,11 @@ const Switch_networks = {
     nativeCurrency: {
       name: "ETH",
       symbol: "ETH",
-      decimals: 18
+      decimals: 18,
     },
     rpcUrls: ["https://mainnet.infura.io/v3/"],
-    blockExplorerUrls: ["https://etherscan.io"]
-  }
-
+    blockExplorerUrls: ["https://etherscan.io"],
+  },
 };
 
 const changeNetwork = async ({ networkName }) => {
@@ -48,9 +43,9 @@ const changeNetwork = async ({ networkName }) => {
       method: "wallet_addEthereumChain",
       params: [
         {
-          ...Switch_networks[networkName]
-        }
-      ]
+          ...Switch_networks[networkName],
+        },
+      ],
     });
   } catch (err) {
     await window.ethereum.request({
@@ -58,11 +53,9 @@ const changeNetwork = async ({ networkName }) => {
       params: [
         {
           chainId: `0x${Number(_networkid).toString(16)}`,
-        }
-      ]
+        },
+      ],
     });
-
-
   }
 };
 
@@ -72,12 +65,12 @@ class App extends Component {
     web3: null,
     accounts: null,
     contract: null,
-    MintAmount: "0"
+    MintAmount: "0",
+    loaded:"none",
   };
   handleNetworkSwitch = async (networkName) => {
     await changeNetwork({ networkName });
   };
-
 
   connetcWallet = async () => {
     const web3 = new Web3(window.ethereum);
@@ -91,7 +84,7 @@ class App extends Component {
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
       if (networkId !== _networkid) {
-        this.handleNetworkSwitch("mainnet")
+        this.handleNetworkSwitch("mainnet");
       }
 
       const instance = new web3.eth.Contract(
@@ -101,22 +94,16 @@ class App extends Component {
 
       this.setState({ web3, accounts, contract: instance }, this.runExample);
     } catch (error) {
-      alert(
-        `無法載入錢包`
-      );
+      alert(`無法載入錢包`);
       console.error(error);
     }
     const _GetNetworkId = await web3.eth.net.getId();
     this.setState({ GetNetworkId: _GetNetworkId });
-  }
-
+  };
 
   mint = async (event) => {
     const web3 = new Web3(window.ethereum);
-    const contract = new web3.eth.Contract(
-      contractJson.abi,
-      _ContractAddress
-    );
+    const contract = new web3.eth.Contract(contractJson.abi, _ContractAddress);
     const accounts = await web3.eth.getAccounts();
 
     if (this.state.isAllow > 0 && this.state.isAllow >= this.state.MintAmount) {
@@ -135,7 +122,9 @@ class App extends Component {
       this.setState({ MintAmount: 0 });
     }
 
-    const _isAllow = await contract.methods.allowedMintCount(accounts[0]).call();
+    const _isAllow = await contract.methods
+      .allowedMintCount(accounts[0])
+      .call();
     const _totalSupply = await contract.methods.totalSupply().call();
     this.setState({ totalSupply: _totalSupply });
     this.setState({ isAllow: _isAllow });
@@ -145,10 +134,7 @@ class App extends Component {
 
 
 
-
   buttonstate = async () => {
-
-
     if (window.web3) {
       const web3 = new Web3(window.ethereum);
       const accounts = await web3.eth.getAccounts();
@@ -156,28 +142,22 @@ class App extends Component {
 
       if (typeof accounts[0] === "undefined") {
         this.connetcWallet();
-
-      }
-      else if (networkId_window !== _networkid) {
-        this.handleNetworkSwitch("mainnet")
-      }
-      else {
+      } else if (networkId_window !== _networkid) {
+        this.handleNetworkSwitch("mainnet");
+      } else {
         if (this.state.MintAmount === "0") {
-          alert("Amount can't be 0")
+          alert("Amount can't be 0");
         } else {
           console.log("trymint");
           this.mint();
         }
       }
     } else {
-      window.open("https://metamask.io/", '_blank').focus();
+      // window.open("https://metamask.io/", "_blank").focus();
     }
-  }
-
+  };
 
   componentDidMount = async () => {
-
-
     //如果錢包切換，就重新整理頁面
     if (window.ethereum) {
       window.ethereum.on("chainChanged", () => {
@@ -188,23 +168,16 @@ class App extends Component {
       });
     }
 
+    let _RPC = "https://mainnet.infura.io/v3/9fe4b651dd214a29a158db8192e0332b";
 
-    //let _RPC = "https://mainnet.infura.io/v3/9fe4b651dd214a29a158db8192e0332b";
-    let _RPC = "https://eth-mainnet.g.alchemy.com/v2/DxEpRBm9E6sDMh7ZGBn2zfhqn3U9DjkH";
-    if (_now % 3 > 0) {
-      _RPC = "https://eth-mainnet.g.alchemy.com/v2/DxEpRBm9E6sDMh7ZGBn2zfhqn3U9DjkH";
-    }
 
-    const provider = new Web3.providers.HttpProvider(
-      _RPC
-    );
+    const provider = new Web3.providers.HttpProvider(_RPC);
     let web3 = new Web3(provider);
     let _isAllow = 0;
+    console.log("1")
 
-    const contract = new web3.eth.Contract(
-      contractJson.abi,
-      _ContractAddress
-    );
+
+    const contract = new web3.eth.Contract(contractJson.abi, _ContractAddress);
     const web3_windows = new Web3(window.ethereum);
 
     if (window.web3) {
@@ -216,14 +189,13 @@ class App extends Component {
         _isActiveOff = "none";
         _noWallet = "";
         _mintReadOnly = true;
-      }
-      else if (networkId_window !== _networkid) {
+      } else if (networkId_window !== _networkid) {
         this.setState({ NetWorkState: "switch to mainnet" });
-
-      }
-      else {
+      } else {
         this.setState({ NetWorkState: "Mint" });
-        const _isAllow = await contract.methods.allowedMintCount(accounts[0]).call();
+        const _isAllow = await contract.methods
+          .allowedMintCount(accounts[0])
+          .call();
         this.setState({ isAllow: _isAllow });
       }
     } else {
@@ -238,29 +210,23 @@ class App extends Component {
 
     _isAllow = this.state.isAllow;
 
-
     if (_isAllow > 0) {
       _currentPrice = 0;
-    }
-    else {
+    } else {
       _currentPrice = await contract.methods.PRICE().call();
     }
-
 
     if (_now < _publicSale && _isAllow <= 0) {
       _isActiveOn = "none";
       _isActiveOff = "";
       _mintReadOnly = true;
-      _disableMintDiv = "none"
+      _disableMintDiv = "none";
       this.setState({ NetWorkState: "Coming soon" });
-
-
     } else {
       _isActiveOn = "";
       _isActiveOff = "none";
       _mintReadOnly = false;
-      _disableMintDiv = ""
-
+      _disableMintDiv = "";
     }
     const accounts = await web3_windows.eth.getAccounts();
 
@@ -268,16 +234,14 @@ class App extends Component {
       _isActiveOn = "none";
       _isActiveOff = "none";
       _mintReadOnly = true;
-      _disableMintDiv = "none"
-
+      _disableMintDiv = "none";
     }
 
-    if (this.state.NetWorkState == "switch to mainnet") {
+    if (this.state.NetWorkState === "switch to mainnet") {
       _isActiveOn = "none";
       _isActiveOff = "none";
       _mintReadOnly = true;
-      _disableMintDiv = "none"
-
+      _disableMintDiv = "none";
     }
 
     const _totalSupply = await contract.methods.totalSupply().call();
@@ -289,11 +253,9 @@ class App extends Component {
       _GetmaxMintAmount = _isAllow;
     } else {
       _GetmaxMintAmount = _maxMintAmount;
-
     }
-
+    this.setState({loaded:""})
   };
-
 
   test = async (event) => {
     alert("test");
@@ -303,66 +265,74 @@ class App extends Component {
       this.setState({ MintAmount: evt.target.value });
     }
 
-
     if (Number(evt.target.value) > _GetmaxMintAmount) {
       this.setState({ MintAmount: _GetmaxMintAmount });
     }
   };
   render() {
-
     return (
       <div
-        style={{
-          //  backgroundColor: "#80aba9",
-        }}
+        style={
+          {
+            //  backgroundColor: "#80aba9",
+          }
+        }
       >
 
+
         <div className="header-top position-relative d-flex align-items-center">
-
-
           <div className="section">
             <div className="content_Text">
-              <div className="mintform">
-                <h3>Mint Epiddha NFT</h3>
-                <div style={{
-                  display: _isActiveOn
-                }}>
-                  <strong>Price：</strong>{_currentPrice / 1e18} {" Eth"}<br />
+              <div className="mintform" 
+                                  style={{ display: this.state.loaded}}
 
+              >
+                <h3>Mint Epiddha NFT</h3>
+                <div
+                  style={{
+                    display: _isActiveOn,
+                  }}
+                >
+                  <strong>Price：</strong>
+                  {_currentPrice / 1e18} {" Eth"}
+                  <br />
                 </div>
 
-                <div style={{
-                  display: _noWallet
-                }}>
-
+                <div
+                  style={{
+                    display: _noWallet,
+                  }}
+                >
                   <strong>Count: </strong>
                   {this.state.totalSupply} / {this.state.maxSupply}
                 </div>
 
-                <div style={{
-                  display: _isActiveOff
-                }}>
-                  <span style={{ color: "#00aaFF",fontWeight:"800" }}>Waiting for open sale</span><br />
-
+                <div
+                  style={{
+                    display: _isActiveOff,
+                  }}
+                >
+                  <span style={{ color: "#00aaFF", fontWeight: "800" }}>
+                    Waiting for open sale
+                  </span>
+                  <br />
                 </div>
               </div>
 
+              <div></div>
               <div>
-              </div>
-              <div>
-                <div>
-                </div>
+                <div></div>
               </div>
               <br></br>
 
-              <div >
+              <div>
                 <label>
                   <input
                     type="textarea"
                     id="MintAmount"
                     maxLength={3}
                     max={20}
-                    style={{ width: "100px",display: _disableMintDiv }}
+                    style={{ width: "100px", display: _disableMintDiv }}
                     pattern="[+-]?\d+(?:[.,]\d+)?"
                     onChange={this.handleMintAmountChange}
                     value={this.state.MintAmount}
@@ -378,20 +348,33 @@ class App extends Component {
                   //variant="warning"
                   className="button is-rounded"
                   id="mintbutton"
+                  style={{ display: this.state.loaded}}
+
                 >
                   {this.state.NetWorkState}
                 </Button>
+                {/* <Button
+                  type="button"
+                  onClick={this.disconnect}
+                  //variant="warning"
+                  className="button is-rounded"
+                  id="disconnect"
+                >
+                  disconnect
+                </Button> */}
               </div>
+              <div className="d-flex align-items-center justify-content-center">
+
+
+
+              </div>
+
             </div>
           </div>
 
         </div>
       </div>
-
     );
   }
-
-
-
 }
 export default App;
